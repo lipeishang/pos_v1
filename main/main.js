@@ -63,7 +63,7 @@ let buildReceipts = (receiptItems) => {
 }
 
 let printReceipt = (receipts) => {
-  var allReceipt = '';
+  let allReceipt = '';
 
   for(let receipt of receipts.receiptItems){
     let name = receipt.cartItem.item.name;
@@ -74,8 +74,6 @@ let printReceipt = (receipts) => {
     allReceipt = allReceipt + '名称：' + name + '，' + '数量：' + count + unit + '，' + '单价：' + price.toFixed(2)
                  + '(元)' + '，' + '小计：' + subTotal.toFixed(2) + '(元)' + '\n' ;
   }
-
-  console.log(allReceipt);
 
   allReceipt = '***<没钱赚商店>收据***' + '\n' + allReceipt + '----------------------' + '\n' +
       '总计：' + receipts.allTotal.toFixed(2) + '(元)' + '\n' +'节省：' + receipts.allSaved.toFixed(2) + '(元)' + '\n'
