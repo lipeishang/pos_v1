@@ -50,15 +50,36 @@ let discount = (cartItem,promotionType) => {
 };
 
 let buildReceipts = (receiptItems) => {
-  var allTotal = 0;
-  var allSaved = 0;
+  let allTotal = 0;
+  let allSaved = 0;
   for(let receiptItem of receiptItems) {
      allTotal = allTotal + receiptItem.subTotal;
      allSaved = allSaved + receiptItem.saved;
 
   }
-
    let receipts = { receiptItems:receiptItems , allTotal : allTotal, allSaved: allSaved };
 
   return receipts;
 }
+
+let printReceipt = (receipts) => {
+  var allReceipt = '';
+
+  for(let receipt of receipts.receiptItems){
+    let name = receipt.cartItem.item.name;
+    let count = receipt.cartItem.count;
+    let unit = receipt.cartItem.item.unit;
+    let price = receipt.cartItem.item.price;
+    let subTotal = receipt.subTotal;
+    allReceipt = allReceipt + '名称：' + name + '，' + '数量：' + count + unit + '，' + '单价：' + price.toFixed(2)
+                 + '(元)' + '，' + '小计：' + subTotal.toFixed(2) + '(元)' + '\n' ;
+  }
+
+  console.log(allReceipt);
+
+  allReceipt = '***<没钱赚商店>收据***' + '\n' + allReceipt + '----------------------' + '\n' +
+      '总计：' + receipts.allTotal.toFixed(2) + '(元)' + '\n' +'节省：' + receipts.allSaved.toFixed(2) + '(元)' + '\n'
+      + '**********************';
+
+  return allReceipt;
+};
